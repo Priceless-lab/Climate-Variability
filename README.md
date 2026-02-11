@@ -1,0 +1,18 @@
+The purpose of this project is to determine the effects of climate variability on Black Volta River Discharge:
+Import excell data set in R studio using the following codes:
+> Data_for_trend<- read_excel("C:/Users/USER/Desktop/Data_for_trend")
+> View(Data_for_trend)
+Plot the time-series data of hydroclimatic parameters
+plot(Data_for_trend$Discharge~rdate,xlab="DATE",ylab="Discharge",type="l",col="BLACK")
+Fill in missing data for hydroclimatic parametes
+Data_for_trend$Temp[is.na(Data_for_trend$Temp)]<-na.approx
+Replot the data:
+(Data_for_trend$Temperature,na.rm = TRUE)
+Prepare data for monthly time series box plot for all time series data.
+Data_for_trend_mod$Month=factor(Data_for_trend_mod$Month,labels = c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct","Nov", "Dec"))
+Plot the  data, and repeat for all parameters
+boxplot(Rainfall~Month,data =Data_for_trend_mod,xlab="Month",ylab="Rainfall")
+par(mfrow=c(2,1))
+Apply the Mann Kendall test for each parameters:
+install.packages("trendtestR") for trend analyses
+Apply trend trendtestR for each data set
